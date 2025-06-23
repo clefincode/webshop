@@ -34,10 +34,9 @@ def execute():
 		"payment_gateway_account",
 		"save_quotations_as_draft",
 	]
-
-	settings_doctype = "E Commerce Settings" if has_ecommerce_fields() else "Webshop Settings"
-
-	settings = frappe.get_doc(settings_doctype)
+# change Webshop Settings
+	settings_doctype ='Webshop Settings'
+	settings = frappe.get_doc("Webshop Settings")
 
 	def map_into_e_commerce_settings(doctype, fields):
 		singles = frappe.qb.DocType("Singles")
@@ -57,11 +56,12 @@ def execute():
 
 		settings.save()
 
-	# shift data to E Commerce Settings
+	# shift data to Webshop Settings
+	# change Webshop Settings
 	map_into_e_commerce_settings("Products Settings", products_settings_fields)
 	map_into_e_commerce_settings("Shopping Cart Settings", shopping_cart_settings_fields)
 
-	# move filters and attributes tables to E Commerce Settings from Products Settings
+	# move filters and attributes tables to Webshop Settings from Products Settings
 	for doctype in ("Website Filter Field", "Website Attribute"):
 		frappe.db.set_value(
 			doctype,

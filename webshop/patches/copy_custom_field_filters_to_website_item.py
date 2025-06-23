@@ -41,10 +41,8 @@ def execute():
 		).run(as_dict=True)
 
 		return table_multiselect_data
-
-	settings_doctype = "E Commerce Settings" if has_ecommerce_fields() else "Webshop Settings"
-
-	settings = frappe.get_doc(settings_doctype)
+    # Change Webshop Settings
+	settings = frappe.get_doc("Webshop Settings")
 
 	if not (settings.enable_field_filters or settings.filter_fields):
 		return
