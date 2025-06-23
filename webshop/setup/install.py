@@ -46,13 +46,13 @@ def copy_from_ecommerce_settings():
 		)
 
 		query.run()
-
+	# change Webshop Settings
 def has_ecommerce_fields() -> bool:
 	table = frappe.qb.Table("tabSingles")
 	query = (
 		frappe.qb.from_(table)
 		.select(table.field)
-		.where(table.doctype == "E Commerce Settings")
+		.where(table.doctype == "Webshop Settings")
 		.limit(1)
 	)
 
@@ -61,7 +61,7 @@ def has_ecommerce_fields() -> bool:
 
 
 def drop_ecommerce_settings():
-	frappe.delete_doc_if_exists("DocType", "E Commerce Settings", force=True)
+	frappe.delete_doc_if_exists("DocType", "Webshop Settings", force=True)
 
 
 def remove_ecommerce_settings_doctype():
@@ -69,7 +69,7 @@ def remove_ecommerce_settings_doctype():
 		return
 
 	table = frappe.qb.Table("tabSingles")
-	old_doctype = "E Commerce Settings"
+	old_doctype = "Webshop Settings"
 
 	frappe.qb.from_(table).delete().where(table.doctype == old_doctype).run()
 
