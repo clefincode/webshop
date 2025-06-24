@@ -5,13 +5,19 @@ from frappe.utils import floor
 
 
 class ProductFiltersBuilder:
-	def __init__(self, item_group=None):
+	def __init__(self, item_group=None, filters=None):
 		if not item_group:
 			self.doc = frappe.get_doc("Webshop Settings")
 		else:
 			self.doc = frappe.get_doc("Item Group", item_group)
 
 		self.item_group = item_group
+		### Custom Update
+		if filters:
+			self.filters = filters
+		else :
+			self.filters = None
+		### End Custom Update
 
 	def get_field_filters(self):
 		from webshop.webshop.doctype.override_doctype.item_group import get_child_groups_for_website

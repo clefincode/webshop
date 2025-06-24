@@ -14,7 +14,7 @@ from webshop.webshop.shopping_cart.cart import get_party
 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_info_for_website(item_code, skip_quotation_creation=False):
+def get_product_info_for_website(item_code, skip_quotation_creation=False , batch_no = None):
 	"""
 	Get product price / stock info for website
 	"""
